@@ -70,7 +70,7 @@ App 的输入分成 4 类：
 至少要支持以下几项：
 
 - `shop_domain`
-  - 例如：`halibuycosmetics.myshopify.com`
+  - 例如：`your-store.myshopify.com`
 
 - `client_id`
 

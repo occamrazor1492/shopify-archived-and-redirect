@@ -283,7 +283,7 @@ export default function App() {
                     shopDomain: event.target.value,
                   }))
                 }
-                placeholder="halibuycosmetics.myshopify.com"
+                placeholder="your-store.myshopify.com"
               />
             </label>
 
