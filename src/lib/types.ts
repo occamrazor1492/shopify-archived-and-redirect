@@ -90,6 +90,7 @@ export interface AnalysisSummary {
 }
 
 export interface AnalysisResult {
+  rulesUsed: AnalysisRules;
   summary: AnalysisSummary;
   warnings: string[];
   namedSummaryRows: DecisionRow[];

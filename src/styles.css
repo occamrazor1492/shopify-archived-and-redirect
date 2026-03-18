@@ -331,6 +331,19 @@ textarea:focus {
   margin-bottom: 18px;
 }
 
+.stats-grid.compact {
+  margin-bottom: 0;
+}
+
+.rule-summary {
+  margin-bottom: 18px;
+}
+
+.text-strong {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
 .table-card + .table-card {
   margin-top: 18px;
 }

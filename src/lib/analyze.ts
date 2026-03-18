@@ -304,6 +304,13 @@ export function analyzeData(input: {
   ];
 
   return {
+    rulesUsed: {
+      daysThreshold: rules.daysThreshold,
+      inventoryThreshold: rules.inventoryThreshold,
+      redirectThreshold: rules.redirectThreshold,
+      finalSaleKeywords: [...rules.finalSaleKeywords],
+      autoExecute: rules.autoExecute,
+    },
     summary: {
       failedSkuCount: failures.length,
       mappedSkuCount,

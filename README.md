@@ -7,6 +7,7 @@
 - 上传 1 个失败 SKU 文件，支持 `.xls` / `.xlsx` / `.csv`
 - 上传多个 `products_export` 文件
 - 合并 SKU 与商品导出数据
+- 天数阈值、库存阈值、重定向阈值、`final sale` 排除词都可以在页面上填写，不是写死常量
 - 根据库存、创建时间、`final sale` 关键词做规则分流
 - 自动生成：
   - `失败 SKU 命名汇总表`
@@ -106,6 +107,7 @@ npm run build
 ## 已知范围
 
 - 当前 MVP 以 `shop_domain + access_token` 为主
+- `60` 天、`-5` 库存、`0.62` 匹配分只是默认值；运行时会以页面当前填写的参数为准
 - `client_id / client_secret` 输入框已保留，但还没有实现 Shopify 官方的动态取 token 流程
 - 重定向目标匹配基于导出商品标题与 handle 做相似度计算，低于阈值的记录会进入待复核表
 - 目前不是嵌入式 Shopify Admin app，也没有 App Bridge、OAuth callback、安装回调等正式 app 能力

@@ -377,7 +377,7 @@ export default function App() {
 
           <div className="grid four">
             <label className="field">
-              <span>天数阈值</span>
+              <span>天数阈值（默认 60，可改）</span>
               <input
                 type="number"
                 value={rules.daysThreshold}
@@ -391,7 +391,7 @@ export default function App() {
             </label>
 
             <label className="field">
-              <span>库存阈值</span>
+              <span>库存阈值（默认 -5，可改）</span>
               <input
                 type="number"
                 value={rules.inventoryThreshold}
@@ -405,7 +405,7 @@ export default function App() {
             </label>
 
             <label className="field">
-              <span>重定向阈值</span>
+              <span>重定向阈值（默认 0.62，可改）</span>
               <input
                 type="number"
                 min="0"
@@ -437,7 +437,7 @@ export default function App() {
           </div>
 
           <label className="field">
-            <span>final sale 排除关键词</span>
+            <span>final sale 排除关键词（可改）</span>
             <textarea
               rows={4}
               value={rules.finalSaleKeywords.join("\n")}
@@ -493,6 +493,22 @@ export default function App() {
               <Stat label="未匹配数量" value={analysis.summary.unmatchedCount} />
               <Stat label="低分待复核" value={analysis.summary.lowScoreCount} />
               <Stat label="规则排除" value={analysis.summary.ignoredCount} />
+            </div>
+
+            <div className="rule-summary">
+              <div className="section-title">
+                <h3>本次分析使用的变量</h3>
+                <p>这些值来自你页面里填写的参数，不是写死在执行逻辑里的固定常量。</p>
+              </div>
+              <div className="stats-grid compact">
+                <Stat label="天数阈值" value={analysis.rulesUsed.daysThreshold} />
+                <Stat label="库存阈值" value={analysis.rulesUsed.inventoryThreshold} />
+                <Stat label="重定向阈值 x100" value={Math.round(analysis.rulesUsed.redirectThreshold * 100)} />
+                <TextStat
+                  label="final sale 排除词"
+                  value={analysis.rulesUsed.finalSaleKeywords.join(" / ") || "无"}
+                />
+              </div>
             </div>
 
             <div className="downloads">
@@ -559,6 +575,15 @@ function Stat(props: { label: string; value: number }) {
   return (
     <div className="stat-card">
       <strong>{props.value}</strong>
+      <span>{props.label}</span>
+    </div>
+  );
+}
+
+function TextStat(props: { label: string; value: string }) {
+  return (
+    <div className="stat-card">
+      <strong className="text-strong">{props.value}</strong>
       <span>{props.label}</span>
     </div>
   );
