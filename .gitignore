@@ -1,0 +1,6 @@
+dist
+node_modules
+.netlify
+.DS_Store
+1_采集失败.xls
+products_export_*.csv
