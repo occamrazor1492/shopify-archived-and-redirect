@@ -50,6 +50,40 @@ npm run build
 - 发布目录：`dist`
 - Functions 目录：`netlify/functions`
 
+## 适用范围与安装方式
+
+这个项目当前是一个部署在 Netlify 上的外部操作台，不是已经完成 Shopify 内嵌安装流的公共应用。
+
+这点要区分清楚：
+
+- 现在部署到 Netlify 的，是我们自己的前后端工具站点
+- 它不会因为上线到 Netlify，就自动变成“商家点一下就能安装”的 Shopify App
+- 要让它对某个店铺生效，仍然必须先让这个店铺里存在一个可用的 Shopify app，并给它授权相应 scopes
+
+按当前 MVP 的实现，最现实的使用方式是：
+
+- 目标店铺先准备好 Shopify Admin API 凭证
+- 我们把 `shop_domain + access_token` 配到本工具里
+- 然后由这个工具代调用 Shopify Admin GraphQL
+
+所以当前版本更适合：
+
+- 你自己的店铺
+- 你有管理员权限或受托管理、能合法获取 API 凭证的店铺
+
+当前版本不适合：
+
+- 直接发给任意外部商家自行安装
+- 当成 Shopify App Store 公共应用来分发
+- 在没有 OAuth 安装流的情况下做多商家自助接入
+
+如果后面要做成“外部商家点击安装即可使用”的正式 Shopify app，需要补以下能力：
+
+- 在 Dev Dashboard / Partner 体系下创建正式 app
+- 选择正确的 distribution 方式
+- 实现 OAuth 安装与授权
+- 为每个店铺安全管理 token，而不是手工贴 `access_token`
+
 ### 推荐环境变量
 
 - `SHOPIFY_SHOP_DOMAIN`
@@ -72,5 +106,6 @@ npm run build
 ## 已知范围
 
 - 当前 MVP 以 `shop_domain + access_token` 为主
-- `client_id / client_secret` 输入框已保留，但还没有实现动态换 token
+- `client_id / client_secret` 输入框已保留，但还没有实现 Shopify 官方的动态取 token 流程
 - 重定向目标匹配基于导出商品标题与 handle 做相似度计算，低于阈值的记录会进入待复核表
+- 目前不是嵌入式 Shopify Admin app，也没有 App Bridge、OAuth callback、安装回调等正式 app 能力

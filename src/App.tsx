@@ -333,9 +333,20 @@ export default function App() {
           </div>
 
           <p className="hint">
-            MVP 当前优先支持 `shop_domain + access_token`，也支持把凭证放到 Netlify 环境变量中。
-            `client_id / client_secret` 字段已保留，但还没接动态换 token。
+            当前版本是部署在 Netlify 上的外部运营工具，不是已经做成可给任意商家安装的 Shopify 公共应用。
+            现在必须先在目标店铺对应的 Shopify app 上拿到凭证，再把 `shop_domain + access_token`
+            配进来使用。
           </p>
+
+          <div className="warning-box">
+            <p>
+              适用范围：更适合你自己有管理员权限的店铺，或你受托管理、能合法拿到 API 凭证的店铺。
+            </p>
+            <p>
+              当前代码还没实现 Shopify OAuth 安装流。`client_id / client_secret` 字段是为下一阶段预留的；
+              如果后面要给外部商家自行安装，就必须补正式的 OAuth / distribution 方案。
+            </p>
+          </div>
 
           <div className="grid two upload-grid">
             <label className="upload">
